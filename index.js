@@ -1,5 +1,11 @@
-const judul = document.getElementById("judul");
+// const judul = document.getElementById('judul')
 
-judul.innerText = "ini Azriel";
+// judul.innerHTML= "Azriel Naufal"
 
-document.body.append(judul);
+const sectionA = document.querySelector("#a");
+const p2 = sectionA.querySelector(".p2");
+
+p2.classList.add("label");
+p2.classList.remove("label");
+p2.classList.toggle("label");
+
