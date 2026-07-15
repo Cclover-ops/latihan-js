@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan DOM - Day 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f4f8;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            background: yellow;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .card {
+            border: 2px solid #e2e8f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .card.active {
+            border-color: #4299e1;
+            background: #ebf8ff;
+            box-shadow: 0 2px 8px rgba(66,153,225,0.2);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        .card-desc {
+            color: #718096;
+            margin-top: 5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        ul li {
+            padding: 10px 15px;
+            background: #f7fafc;
+            margin: 8px 0;
+            border-radius: 6px;
+            border-left: 4px solid #4299e1;
+        }
+        
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border: 2px dashed #cbd5e0;
+        }
+        
+        .info-box {
+            background: #e2e8f0;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        
+        .big-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .text-muted {
+            color: #a0aec0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="mainTitle">🚀 Belajar DOM Day 1</h1>
+        
+        <p class="description">Hari ini kita belajar manipulasi DOM dasar.</p>
+        
+        <!-- Card Section -->
+        <div class="card" id="card1">
+            <div class="card-title">Card Pertama</div>
+            <div class="card-desc">Ini adalah deskripsi card pertama</div>
+        </div>
+        
+        <div class="card" id="card2">
+            <div class="card-title">Card Kedua</div>
+            <div class="card-desc">Ini adalah deskripsi card kedua</div>
+        </div>
+        
+        <div class="card" id="card3">
+            <div class="card-title">Card Ketiga</div>
+            <div class="card-desc">Ini adalah deskripsi card ketiga</div>
+        </div>
+        
+        <!-- List Section -->
+        <h3>📋 Daftar Tugas:</h3>
+        <ul id="todoList">
+            <li class="todo-item">Belajar JavaScript</li>
+            <li class="todo-item">Belajar DOM</li>
+            <li class="todo-item special">Belajar Event (besok)</li>
+            <li class="todo-item">Buat project</li>
+        </ul>
+        
+        <!-- Info Section -->
+        <div class="info-box" id="infoBox">
+            <p><strong>Info:</strong> Ini adalah info box</p>
+            <p class="text-muted">Kamu bisa mengubah isi ini</p>
+        </div>
+        
+        <!-- Input Contoh (tanpa event) -->
+        <div>
+            <label for="sampleInput">Contoh Input:</label>
+            <input type="text" id="sampleInput" value="Isi default" />
+            <button class="btn" id="sampleBtn">Klik Saya</button>
+        </div>
+        
+        <!-- Output Area -->
+        <div id="output">
+            <h4>📤 Output Area</h4>
+            <p id="outputText">Kosong... cek console untuk hasil manipulasi</p>
+        </div>
+    </div>
+
+    <script src="script.js">
+        
+    </script>
+</body>
+</html>
