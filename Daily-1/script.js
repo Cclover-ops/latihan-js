@@ -118,7 +118,6 @@ const output = document.getElementById("output");
 const outputText = output.querySelector("#outputText");
 
 output.insertBefore(newParagraph, outputText);
-
 // ---------- SOAL 7: DOM Traversal ----------
 // 7.1 Ambil parent element dari #card1, lalu console.log
 
@@ -148,16 +147,15 @@ newElementListItem.setAttribute("class", "todo-item");
 
 // 8.3 Masukkan li baru ke dalam #todoList (di bagian akhir)
 
-todoList.append(newElementListItem)
+todoList.append(newElementListItem);
 
 // 8.4 Ubah text dari #outputText menjadi "✅ Semua manipulasi selesai! Cek console."
 
-outputText.innerText = "✅ Semua manipulasi selesai! Cek console."
+outputText.innerText = "✅ Semua manipulasi selesai! Cek console.";
 
 // 8.5 Cek jumlah total <li> sekarang, lalu console.log
 
 console.log(li.length);
-
 
 // ============================================
 // SELESAI! Cek hasilnya di browser.
