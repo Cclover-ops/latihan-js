@@ -1,11 +1,30 @@
-// const judul = document.getElementById('judul')
+const newP = document.createElement("p");
+newP.textContent = "ini element baru";
+newP.classList.add("p4")
 
-// judul.innerHTML= "Azriel Naufal"
+const sectionA = document.getElementById("a");
+sectionA.appendChild(newP);
 
-const sectionA = document.querySelector("#a");
-const p2 = sectionA.querySelector(".p2");
+const newListItem = document.createElement('li')
+newListItem.textContent = "Ini item baru"
 
-p2.classList.add("label");
-p2.classList.remove("label");
-p2.classList.toggle("label");
+const sectionB = document.getElementById('b')
+const ul = sectionB.querySelector("ul")
+const li2 = ul.querySelector("li:nth-child(2)")
 
+ul.insertBefore(newListItem, li2)
+
+const link = sectionA.querySelector('a')
+
+sectionA.removeChild(link)
+
+const paragraphB = sectionB.querySelector('p')
+const h2SectionB = document.createElement('h2')
+
+h2SectionB.textContent = "Ini Subjudul"
+
+sectionB.replaceChild(h2SectionB, paragraphB)
+
+newP.classList.add("new-element")
+newListItem.classList.add("new-element")
+h2SectionB.classList.add("new-element")
