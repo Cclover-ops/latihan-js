@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan Event - Day 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background: #f0f4f8;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+        }
+        
+        /* Button Styles */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: #fc8181;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #f56565;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: #68d391;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #48bb78;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background: #f6ad55;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: #ed8936;
+            transform: translateY(-2px);
+        }
+        
+        /* Box Styles */
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #667eea;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .box.hovered {
+            background: #48bb78;
+            transform: scale(1.05);
+        }
+        
+        .box.clicked {
+            background: #fc8181;
+            transform: rotate(10deg);
+        }
+        
+        /* Counter */
+        .counter-display {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        
+        /* Input */
+        .input-group {
+            margin: 20px 0;
+        }
+        
+        .input-group input {
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        /* Output */
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border: 2px dashed #cbd5e0;
+            min-height: 50px;
+        }
+        
+        #output p {
+            margin: 5px 0;
+        }
+        
+        .log-entry {
+            padding: 5px 10px;
+            background: #edf2f7;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .log-entry.click {
+            border-left-color: #fc8181;
+        }
+        
+        .log-entry.hover {
+            border-left-color: #48bb78;
+        }
+        
+        .log-entry.key {
+            border-left-color: #f6ad55;
+        }
+        
+        /* Form */
+        .form-group {
+            margin: 20px 0;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Belajar Event - Day 3</h1>
+        <p class="subtitle">Mulai dari dasar: click, hover, input, submit</p>
+        
+        <!-- Section 1: Click Events -->
+        <h3>1. Click Events</h3>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="btnClick">Klik Saya</button>
+            <button class="btn btn-success" id="btnCounter">Counter: <span id="counterDisplay">0</span></button>
+            <button class="btn btn-danger" id="btnReset">Reset</button>
+        </div>
+        
+        <!-- Section 2: Hover Events -->
+        <h3>2. Hover Events</h3>
+        <div class="box" id="colorBox">Hover ke sini!</div>
+        
+        <!-- Section 3: Input Events -->
+        <h3>3. Input Events</h3>
+        <div class="input-group">
+            <input type="text" id="textInput" placeholder="Ketik sesuatu..." />
+            <p id="inputDisplay">Kamu mengetik: </p>
+        </div>
+        
+        <!-- Section 4: Form Submit -->
+        <h3>4. Form Submit</h3>
+        <form id="simpleForm">
+            <div class="form-group">
+                <label for="nameInput">Nama:</label>
+                <input type="text" id="nameInput" placeholder="Masukkan nama" />
+            </div>
+            <div class="form-group">
+                <label for="messageInput">Pesan:</label>
+                <textarea id="messageInput" placeholder="Tulis pesan..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim</button>
+            <button type="reset" class="btn btn-warning">Reset</button>
+        </form>
+        
+        <!-- Output Area -->
+        <h3>📋 Log Activity</h3>
+        <div id="output">
+            <p style="color: #a0aec0; font-style: italic;">Belum ada aktivitas...</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan Event - Day 3.5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background: #f0f4f8;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #e53e3e;
+            padding-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary { background: #4299e1; color: white; }
+        .btn-primary:hover { background: #3182ce; transform: translateY(-2px); }
+        
+        .btn-danger { background: #fc8181; color: white; }
+        .btn-danger:hover { background: #f56565; transform: translateY(-2px); }
+        
+        .btn-success { background: #68d391; color: white; }
+        .btn-success:hover { background: #48bb78; transform: translateY(-2px); }
+        
+        .btn-warning { background: #f6ad55; color: white; }
+        .btn-warning:hover { background: #ed8936; transform: translateY(-2px); }
+        
+        .btn-purple { background: #9f7aea; color: white; }
+        .btn-purple:hover { background: #805ad5; transform: translateY(-2px); }
+        
+        /* Lightbulb */
+        .lightbulb {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            transition: all 0.3s;
+            border: 4px solid #cbd5e0;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .lightbulb.on {
+            background: #fef3c7;
+            border-color: #f6ad55;
+            box-shadow: 0 0 40px rgba(246, 173, 85, 0.5);
+        }
+        
+        .lightbulb.off {
+            background: #e2e8f0;
+            border-color: #cbd5e0;
+        }
+        
+        /* Score */
+        .score-display {
+            font-size: 48px;
+            font-weight: bold;
+            color: #4299e1;
+            margin: 10px 0;
+        }
+        
+        /* Shopping List */
+        .shopping-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        
+        .shopping-list li {
+            padding: 12px 16px;
+            background: #f7fafc;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4299e1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .shopping-list li:hover {
+            background: #edf2f7;
+        }
+        
+        .shopping-list li.bought {
+            border-left-color: #68d391;
+            background: #f0fff4;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .shopping-list li .delete-btn {
+            background: #fc8181;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .shopping-list li .delete-btn:hover {
+            background: #f56565;
+        }
+        
+        /* Input */
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .input-group input {
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+        
+        /* Output */
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border: 2px dashed #cbd5e0;
+            min-height: 50px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            padding: 5px 10px;
+            background: #edf2f7;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            border-left: 3px solid #4299e1;
+        }
+        
+        .log-entry.click { border-left-color: #fc8181; }
+        .log-entry.hover { border-left-color: #68d391; }
+        .log-entry.key { border-left-color: #f6ad55; }
+        .log-entry.form { border-left-color: #9f7aea; }
+        .log-entry.reset { border-left-color: #fc8181; }
+        
+        .empty-log {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .counter-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        
+        .counter-box .number {
+            font-size: 32px;
+            font-weight: bold;
+            min-width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💡 Latihan Event - Day 3.5</h1>
+        <p class="subtitle">Lebih banyak praktek! Click, hover, input, form, keyboard</p>
+        
+        <!-- Section 1: Lampu -->
+        <h3>💡 Lampu</h3>
+        <div class="lightbulb off" id="lamp">💡</div>
+        <div class="btn-group">
+            <button class="btn btn-success" id="btnTurnOn">💡 Nyalakan</button>
+            <button class="btn btn-danger" id="btnTurnOff">🔌 Matikan</button>
+            <button class="btn btn-warning" id="btnToggle">🔄 Toggle</button>
+        </div>
+        
+        <!-- Section 2: Counter -->
+        <h3>🔢 Counter Sederhana</h3>
+        <div class="counter-box">
+            <button class="btn btn-danger" id="btnMinus">-</button>
+            <span class="number" id="counterNumber">0</span>
+            <button class="btn btn-success" id="btnPlus">+</button>
+            <button class="btn btn-warning" id="btnResetCounter">↺ Reset</button>
+        </div>
+        
+        <!-- Section 3: Shopping List -->
+        <h3>🛒 Shopping List</h3>
+        <div class="input-group">
+            <input type="text" id="itemInput" placeholder="Tambah item..." />
+            <button class="btn btn-primary" id="btnAddItem">Tambah</button>
+        </div>
+        <ul class="shopping-list" id="shoppingList">
+            <li>
+                <span>🍎 Apel</span>
+                <button class="delete-btn">Hapus</button>
+            </li>
+            <li>
+                <span>🍌 Pisang</span>
+                <button class="delete-btn">Hapus</button>
+            </li>
+            <li>
+                <span>🥛 Susu</span>
+                <button class="delete-btn">Hapus</button>
+            </li>
+        </ul>
+        
+        <!-- Section 4: Form -->
+        <h3>📝 Form Sederhana</h3>
+        <form id="simpleForm">
+            <div class="input-group" style="display:block;">
+                <label for="foodInput">Makanan Favorit:</label>
+                <input type="text" id="foodInput" placeholder="Masukkan makanan favorit..." style="width:100%;" />
+            </div>
+            <div class="input-group" style="display:block; margin-top:10px;">
+                <label for="drinkInput">Minuman Favorit:</label>
+                <input type="text" id="drinkInput" placeholder="Masukkan minuman favorit..." style="width:100%;" />
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Kirim</button>
+                <button type="reset" class="btn btn-warning">Reset</button>
+            </div>
+        </form>
+        
+        <!-- Output -->
+        <h3>📋 Log Activity</h3>
+        <div id="output">
+            <p class="empty-log">Belum ada aktivitas...</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

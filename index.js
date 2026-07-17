@@ -1,30 +1,19 @@
-const newP = document.createElement("p");
-newP.textContent = "ini element baru";
-newP.classList.add("p4")
+const p3 = document.querySelector(".p3")
 
-const sectionA = document.getElementById("a");
-sectionA.appendChild(newP);
+function ubahWarna() {
+    p2.style.backgroundColor = "lightblue";
+}
 
-const newListItem = document.createElement('li')
-newListItem.textContent = "Ini item baru"
+const p2 = document.querySelector(".p2")
 
-const sectionB = document.getElementById('b')
-const ul = sectionB.querySelector("ul")
-const li2 = ul.querySelector("li:nth-child(2)")
+p2.onclick = ubahWarna
 
-ul.insertBefore(newListItem, li2)
+const p4 = document.querySelector("#b p")
 
-const link = sectionA.querySelector('a')
+p4.addEventListener("click", function() {
+    const ul = document.querySelector('#b ul')
 
-sectionA.removeChild(link)
-
-const paragraphB = sectionB.querySelector('p')
-const h2SectionB = document.createElement('h2')
-
-h2SectionB.textContent = "Ini Subjudul"
-
-sectionB.replaceChild(h2SectionB, paragraphB)
-
-newP.classList.add("new-element")
-newListItem.classList.add("new-element")
-h2SectionB.classList.add("new-element")
+    const li = document.createElement("li")
+    li.textContent = "item baru"
+    ul.appendChild(li)
+})
